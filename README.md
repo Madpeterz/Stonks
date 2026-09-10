@@ -45,6 +45,8 @@ Lua table serialised to disk, one row per item:
   overlay colour band. Ships with a seed list of ship Design items at `valueper = 0`.
 - Edit `valueper` by hand, or let fast-click discovery add rows, then price them.
 
+thanks to Zelight for the first wave of data points
+
 ### Value bands / colours
 
 | valueper `>=` | band | colour |
