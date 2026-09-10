@@ -11,6 +11,11 @@ local enabledBagOverlay = false
 -- Delay between enabling the overlay and the bag scan actually running.
 local SCAN_DELAY_MS = 4000
 
+-- Bumped every time a scan is queued. api:DoIn has no cancel handle, so a queued
+-- runBagScan checks this against the value it captured and bails if it is stale
+-- (the button was toggled again before the delay elapsed).
+local scanGeneration = 0
+
 -- Rapid-click discovery: click the toggle button this many times, each within
 -- RAPID_CLICK_RESET_MS of the last, to rescan the bag for unknown designs.
 local RAPID_CLICKS_REQUIRED = 5
@@ -32,9 +37,10 @@ local Stonks = {
 	desc = "Its worth 1000g im sure"
 }
 
-local function runBagScan()
-	-- Bailed if the overlay was switched off again during the delay.
-	if not enabledBagOverlay then
+local function runBagScan(generation)
+	-- Bailed if the overlay was switched off again during the delay, or if a
+	-- newer scan has since been queued (superseding this one).
+	if not enabledBagOverlay or generation ~= scanGeneration then
 		return
 	end
 	-- Scan bag for items whose itemid is in the stonks.dat dataset.
@@ -45,9 +51,12 @@ local function runBagScan()
 end
 
 local function ApplyBagOverlay(enabled)
+	-- Invalidate any scan still sitting in the queue.
+	scanGeneration = scanGeneration + 1
 	if enabled then
+		local generation = scanGeneration
 		api.Log:Info("Bag overlay enabled; scanning in " .. tostring(SCAN_DELAY_MS / 1000) .. "s.")
-		api:DoIn(SCAN_DELAY_MS, runBagScan)
+		api:DoIn(SCAN_DELAY_MS, function() runBagScan(generation) end)
 	else
 		api.Log:Info("Bag overlay disabled.")
 		bagoverlay.Hide()

@@ -1,157 +1,7 @@
 {
     {
-        itemid = 35939,
-        itemname = "Naval Cannon Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35951,
-        itemname = "Ivory Nui Figurehead Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35949,
-        itemname = "Charred Bonekraal Figurehead Design",
-        valueper = 0,
-    },
-    {
-        itemid = 39042,
-        itemname = "Design: Sirensong Mistral Rudder",
-        valueper = 0,
-    },
-    {
-        itemid = 35979,
-        itemname = "Mistral Telescope Design",
-        valueper = 0,
-    },
-    {
-        itemid = 39044,
-        itemname = "Design: Sirensong Typhoon Rudder",
-        valueper = 0,
-    },
-    {
-        itemid = 35988,
-        itemname = "Seastorm Fish Finder Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35971,
-        itemname = "Austeran Mistral Rudder Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35956,
-        itemname = "Caernord Sea Serpent Propellant Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35972,
-        itemname = "Austeran Seastorm Rudder Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35932,
-        itemname = "Seastorm Mast Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35959,
-        itemname = "Mistral Trade Pack Storage Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35938,
-        itemname = "Shrapnel Cannon Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35983,
-        itemname = "Mistral Compass Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35994,
-        itemname = "Typhoon Sea Monster Sonar Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35941,
-        itemname = "High-Angle Siege Cannon Design",
-        valueper = 0,
-    },
-    {
-        itemid = 36002,
-        itemname = "Typhoon Shroudlight Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35936,
-        itemname = "Mounted Shield Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35968,
-        itemname = "Lutesong Seastorm Rudder Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35927,
-        itemname = "Mistral Underwater Breathing Device Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35948,
-        itemname = "Beast Figurehead Design",
-        valueper = 0,
-    },
-    {
-        itemid = 39043,
-        itemname = "Design: Sirensong Seastorm Rudder",
-        valueper = 0,
-    },
-    {
-        itemid = 35928,
-        itemname = "Seastorm Underwater Breathing Device Design",
-        valueper = 0,
-    },
-    {
-        itemid = 35960,
-        itemname = "Seastorm Trade Pack Storage Design",
-        valueper = 0,
-    },
-    {
-        itemname = "Eznan Seastorm Rudder Design",
-        itemid = 35964,
-        valueper = 0,
-    },
-    {
-        itemname = "Seastorm Compass Design",
-        itemid = 35984,
-        valueper = 0,
-    },
-    {
-        itemname = "Eznan Mistral Rudder Design",
-        itemid = 35963,
-        valueper = 0,
-    },
-    {
-        itemname = "Mistral Fish Finder Design",
-        itemid = 35987,
-        valueper = 0,
-    },
-    {
-        itemname = "Lutesong Typhoon Rudder Design",
-        itemid = 35969,
-        valueper = 0,
-    },
-    {
-        itemname = "Tsunami Figurehead Design",
-        itemid = 35953,
-        valueper = 0,
-    },
-    {
-        itemname = "Typhoon Telescope Design",
-        itemid = 35981,
+        itemname = "Seabreeze Shroudlight Design",
+        itemid = 35999,
         valueper = 0,
     },
     {
@@ -160,48 +10,18 @@
         valueper = 0,
     },
     {
-        itemname = "Mistral Mast Design",
-        itemid = 35931,
-        valueper = 0,
-    },
-    {
         itemname = "Seastorm Shroudlight Design",
         itemid = 36001,
         valueper = 0,
     },
     {
-        itemname = "Seastorm Telescope Design",
-        itemid = 35980,
+        itemname = "Mistral Mast Design",
+        itemid = 35931,
         valueper = 0,
     },
     {
-        itemname = "Design: Andelph Typhoon Rudder",
-        itemid = 39048,
-        valueper = 0,
-    },
-    {
-        itemname = "Raging Lionheart Figurehead Design",
-        itemid = 35950,
-        valueper = 0,
-    },
-    {
-        itemname = "Lutesong Mistral Rudder Design",
-        itemid = 35967,
-        valueper = 0,
-    },
-    {
-        itemname = "Mistral Sea Monster Sonar Design",
-        itemid = 35992,
-        valueper = 0,
-    },
-    {
-        itemname = "Caernord Seastorm Rudder Design",
-        itemid = 35976,
-        valueper = 0,
-    },
-    {
-        itemname = "Design: Andelph Seastorm Rudder",
-        itemid = 39047,
+        itemname = "Seastorm Underwater Breathing Device Design",
+        itemid = 35928,
         valueper = 0,
     },
     {
@@ -210,8 +30,153 @@
         valueper = 0,
     },
     {
+        itemname = "Mistral Telescope Design",
+        itemid = 35979,
+        valueper = 0,
+    },
+    {
+        itemname = "Caernord Seastorm Rudder Design",
+        itemid = 35976,
+        valueper = 0,
+    },
+    {
+        itemname = "Austeran Seastorm Rudder Design",
+        itemid = 35972,
+        valueper = 0,
+    },
+    {
+        itemname = "Typhoon Telescope Design",
+        itemid = 35981,
+        valueper = 0,
+    },
+    {
         itemname = "Large-Caliber Cannon Design",
         itemid = 35940,
+        valueper = 0,
+    },
+    {
+        itemname = "Design: Andelph Seastorm Rudder",
+        itemid = 39047,
+        valueper = 0,
+    },
+    {
+        itemname = "Lutesong Seastorm Rudder Design",
+        itemid = 35968,
+        valueper = 0,
+    },
+    {
+        itemname = "Beast Figurehead Design",
+        itemid = 35948,
+        valueper = 0,
+    },
+    {
+        itemname = "Tsunami Figurehead Design",
+        itemid = 35953,
+        valueper = 0,
+    },
+    {
+        itemname = "Design: Sirensong Typhoon Rudder",
+        itemid = 39044,
+        valueper = 0,
+    },
+    {
+        itemname = "Charred Bonekraal Figurehead Design",
+        itemid = 35949,
+        valueper = 0,
+    },
+    {
+        itemname = "Mistral Compass Design",
+        itemid = 35983,
+        valueper = 0,
+    },
+    {
+        itemname = "Typhoon Shroudlight Design",
+        itemid = 36002,
+        valueper = 0,
+    },
+    {
+        itemname = "High-Angle Siege Cannon Design",
+        itemid = 35941,
+        valueper = 0,
+    },
+    {
+        itemname = "Ivory Nui Figurehead Design",
+        itemid = 35951,
+        valueper = 0,
+    },
+    {
+        itemname = "Mistral Trade Pack Storage Design",
+        itemid = 35959,
+        valueper = 0,
+    },
+    {
+        itemname = "Seastorm Fish Finder Design",
+        itemid = 35988,
+        valueper = 0,
+    },
+    {
+        itemname = "Mistral Sea Monster Sonar Design",
+        itemid = 35992,
+        valueper = 0,
+    },
+    {
+        itemname = "Design: Sirensong Mistral Rudder",
+        itemid = 39042,
+        valueper = 0,
+    },
+    {
+        itemname = "Mistral Fish Finder Design",
+        itemid = 35987,
+        valueper = 0,
+    },
+    {
+        itemname = "Mounted Shield Design",
+        itemid = 35936,
+        valueper = 0,
+    },
+    {
+        itemname = "Design: Andelph Typhoon Rudder",
+        itemid = 39048,
+        valueper = 0,
+    },
+    {
+        itemname = "Seastorm Compass Design",
+        itemid = 35984,
+        valueper = 0,
+    },
+    {
+        itemname = "Typhoon Sea Monster Sonar Design",
+        itemid = 35994,
+        valueper = 0,
+    },
+    {
+        itemname = "Mistral Underwater Breathing Device Design",
+        itemid = 35927,
+        valueper = 0,
+    },
+    {
+        itemname = "Design: Sirensong Seastorm Rudder",
+        itemid = 39043,
+        valueper = 0,
+    },
+    {
+        itemname = "Seastorm Mast Design",
+        itemid = 35932,
+        valueper = 0,
+    },
+    {
+        itemname = "Eznan Seastorm Rudder Design",
+        itemid = 35964,
+        valueper = 0,
+    },
+    {
+        itemname = "Eznan Mistral Rudder Design",
+        itemid = 35963,
+        valueper = 0,
+    },
+    {
+        itemname = "Lutesong Typhoon Rudder Design",
+        itemid = 35969,
         valueper = 0,
     },
     {
@@ -220,8 +185,48 @@
         valueper = 0,
     },
     {
+        itemname = "Raging Lionheart Figurehead Design",
+        itemid = 35950,
+        valueper = 0,
+    },
+    {
+        itemname = "Caernord Sea Serpent Propellant Design",
+        itemid = 35956,
+        valueper = 0,
+    },
+    {
+        itemname = "Austeran Mistral Rudder Design",
+        itemid = 35971,
+        valueper = 0,
+    },
+    {
+        itemname = "Shrapnel Cannon Design",
+        itemid = 35938,
+        valueper = 0,
+    },
+    {
+        itemname = "Lutesong Mistral Rudder Design",
+        itemid = 35967,
+        valueper = 0,
+    },
+    {
+        itemname = "Seastorm Trade Pack Storage Design",
+        itemid = 35960,
+        valueper = 0,
+    },
+    {
+        itemname = "Naval Cannon Design",
+        itemid = 35939,
+        valueper = 0,
+    },
+    {
         itemname = "Sea Drake Figurehead Design",
         itemid = 35952,
+        valueper = 0,
+    },
+    {
+        itemname = "Seastorm Telescope Design",
+        itemid = 35980,
         valueper = 0,
     },
 }
