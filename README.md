@@ -15,6 +15,7 @@ value band on each matching bag slot.
 - **Design discovery** — rescans the bag for items whose name contains `design`
   (case-insensitive), skips housing/farm building designs, and appends any new
   ones to `stonks.dat` with `valueper = 0` for you to price later.
+  spam the button to update!
 - **Live refresh** — overlay redraws on `BAG_UPDATE` and `REMOVED_ITEM` while enabled.
 
 ## Usage
