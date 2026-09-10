@@ -1,6 +1,6 @@
 # Stonks
 
-ArcheAge Classic addon that scans your inventory for tradable ship/vehicle **Design**
+ArcheAge Classic addon that scans your inventory for tradable ship **Design**
 items, totals their market value from a local price dataset, and paints a coloured
 value band on each matching bag slot.
 
