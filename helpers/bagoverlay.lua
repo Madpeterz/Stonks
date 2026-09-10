@@ -11,7 +11,7 @@ local bagoverlay = {}
 local BOX_HEIGHT = 4
 local BOX_ALPHA = 0.55
 
--- color code (from a dataset row's `color` field) -> {r, g, b}, 0..1 floats.
+-- Colour band -> {r, g, b}, 0..1 floats. Band is derived from valueper.
 -- Alpha is applied uniformly via BOX_ALPHA.
 local COLORS = {
     [0]  = { 0.10, 0.80, 0.20 }, -- green
@@ -28,11 +28,35 @@ local COLORS = {
 }
 local DEFAULT_COLOR = { 0.60, 0.60, 0.60 }
 
+-- Ascending lower bounds; the highest bound a value clears is its band.
+local VALUE_BANDS = {
+    { 900.01, 10 },
+    { 800.01, 9 },
+    { 500.01, 8 },
+    { 300.01, 7 },
+    { 100.01, 6 },
+    { 50.01,  5 },
+    { 40.01,  4 },
+    { 10.01,  3 },
+    { 9.01,   2 },
+    { 7.01,   1 },
+}
+
 -- slotIndex -> overlay widget, reused across shows.
 local boxes = {}
 
-local function colorForCode(code)
-    local rgb = COLORS[tonumber(code) or -1] or DEFAULT_COLOR
+local function bandForValue(valueper)
+    local v = tonumber(valueper) or 0
+    for _, band in ipairs(VALUE_BANDS) do
+        if v >= band[1] then
+            return band[2]
+        end
+    end
+    return 0
+end
+
+local function colorForValue(valueper)
+    local rgb = COLORS[bandForValue(valueper)] or DEFAULT_COLOR
     return rgb[1], rgb[2], rgb[3], BOX_ALPHA
 end
 
@@ -89,7 +113,7 @@ function bagoverlay.Show()
             local box = getBox(slotIndex, slotBtn)
             box:RemoveAllAnchors()
             box:AddAnchor("BOTTOM", slotBtn, 0, constants.overlay.heightOffset)
-            box.bg:SetColor(colorForCode(row.color))
+            box.bg:SetColor(colorForValue(row.valueper))
             box:Show(true)
             used[slotIndex] = true
         end

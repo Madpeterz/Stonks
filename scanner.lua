@@ -49,6 +49,7 @@ function scanner.LoadDataset()
     local byId = {}
     for _, row in ipairs(rows) do
         if row ~= nil and row.itemid ~= nil then
+            row.color = nil -- legacy field, no longer used
             byId[row.itemid] = row
         end
     end
@@ -75,7 +76,7 @@ function scanner.SaveDataset()
 end
 
 -- Scans the bag for items whose name contains KEYWORD and that are not already
--- in the dataset. New ones are appended (valueper 0, color 0) and stonks.dat is
+-- in the dataset. New ones are appended (valueper 0) and stonks.dat is
 -- rewritten. Returns the list of rows that were added.
 function scanner.ScanForNewDesigns()
     local data = scanner.GetDataset()
@@ -92,7 +93,6 @@ function scanner.ScanForNewDesigns()
                         itemid = itemId,
                         itemname = info.name,
                         valueper = 0,
-                        color = 0,
                     }
                     data.byId[itemId] = row
                     data.rows[#data.rows + 1] = row
