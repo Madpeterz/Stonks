@@ -27,10 +27,10 @@ local DATA_PATH = "Stonks/stonks.dat"
 local INVENTORY_BAG = 1 -- bagType 1 = Inventory
 local KEYWORD = "design" -- substring, matched case-insensitively, for discovery scans
 
--- api.File:Write serialises a plain {itemid=.., itemname=.., valueper=..} table
--- via pairs(), whose hash-part order is undefined -- field order flips on every
--- save. Lua's array part *is* order-preserving, so rows are written to disk as
--- positional arrays in this order and converted back to named fields on load.
+-- api.File:Write serialises via pairs(), whose hash-part order is undefined,
+-- so named {itemid=.., itemname=.., valueper=..} rows flip field order on
+-- every save. Lua's array part is order-preserving, so rows are stored on
+-- disk as positional arrays in this order and named in memory everywhere else.
 local FIELD_ORDER = { "itemid", "itemname", "valueper" }
 
 -- Named row -> positional array, e.g. {itemid=1, itemname="x", valueper=2} -> {1, "x", 2}.
@@ -42,12 +42,8 @@ local function toPositional(row)
     return arr
 end
 
--- Positional array -> named row. Passes through rows already in named form
--- (old stonks.dat on disk, or anything hand-edited back into that shape).
+-- Positional array -> named row, e.g. {1, "x", 2} -> {itemid=1, itemname="x", valueper=2}.
 local function toNamed(row)
-    if row.itemid ~= nil or row.itemname ~= nil or row.valueper ~= nil then
-        return row
-    end
     local named = {}
     for i, field in ipairs(FIELD_ORDER) do
         named[field] = row[i]
