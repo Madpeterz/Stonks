@@ -27,6 +27,34 @@ local DATA_PATH = "Stonks/stonks.dat"
 local INVENTORY_BAG = 1 -- bagType 1 = Inventory
 local KEYWORD = "design" -- substring, matched case-insensitively, for discovery scans
 
+-- api.File:Write serialises a plain {itemid=.., itemname=.., valueper=..} table
+-- via pairs(), whose hash-part order is undefined -- field order flips on every
+-- save. Lua's array part *is* order-preserving, so rows are written to disk as
+-- positional arrays in this order and converted back to named fields on load.
+local FIELD_ORDER = { "itemid", "itemname", "valueper" }
+
+-- Named row -> positional array, e.g. {itemid=1, itemname="x", valueper=2} -> {1, "x", 2}.
+local function toPositional(row)
+    local arr = {}
+    for i, field in ipairs(FIELD_ORDER) do
+        arr[i] = row[field]
+    end
+    return arr
+end
+
+-- Positional array -> named row. Passes through rows already in named form
+-- (old stonks.dat on disk, or anything hand-edited back into that shape).
+local function toNamed(row)
+    if row.itemid ~= nil or row.itemname ~= nil or row.valueper ~= nil then
+        return row
+    end
+    local named = {}
+    for i, field in ipairs(FIELD_ORDER) do
+        named[field] = row[i]
+    end
+    return named
+end
+
 -- In-memory dataset. `rows` is the ordered list as stored in stonks.dat;
 -- `byId` maps itemid -> row for fast lookup during a scan.
 local dataset = {
@@ -47,9 +75,11 @@ function scanner.LoadDataset()
     end
 
     local byId = {}
-    for _, row in ipairs(rows) do
+    for i, raw in ipairs(rows) do
+        local row = toNamed(raw)
         if row ~= nil and row.itemid ~= nil then
             row.color = nil -- legacy field, no longer used
+            rows[i] = row
             byId[row.itemid] = row
         end
     end
@@ -71,7 +101,11 @@ end
 -- Serialises the in-memory dataset back to stonks.dat.
 function scanner.SaveDataset()
     local data = scanner.GetDataset()
-    api.File:Write(DATA_PATH, data.rows)
+    local positional = {}
+    for i, row in ipairs(data.rows) do
+        positional[i] = toPositional(row)
+    end
+    api.File:Write(DATA_PATH, positional)
     api.Log:Info("[Stonks] Saved " .. tostring(#data.rows) .. " row(s) to " .. DATA_PATH)
 end
 
