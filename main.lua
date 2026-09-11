@@ -33,7 +33,7 @@ local TEX_CHECKED_PATH = constants.folderPath .. "images/" .. TEX_CHECKED
 local Stonks = {
 	name = "Stonks",
 	author = "Madpeter",
-	version = "1.0.0",
+	version = "1.0.1",
 	desc = "Its worth 1000g im sure"
 }
 
