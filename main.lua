@@ -63,6 +63,16 @@ local function ApplyBagOverlay(enabled)
 	end
 end
 
+local function toggleUIbutton()
+	showUIbutton = settings.Get("showUIbutton")
+	showUIbutton = not showUIbutton
+	settings.Update("showUIbutton", showUIbutton)
+	if settings.Get("showUIbutton") then
+		Stonks.windowUIbUTTON:Show(true)
+	else
+		Stonks.windowUIbUTTON:Show(false)
+	end
+end
 -- Counts consecutive fast clicks on the toggle button; on the Nth, rescans the
 -- bag for designs not yet in stonks.dat and adds them.
 local function handleRapidClick()
@@ -136,6 +146,23 @@ local function OnLoad()
 	Stonks.windowUIbUTTON:SetHandler("OnEvent", Stonks.EventListener)
     Stonks.windowUIbUTTON:RegisterEvent("REMOVED_ITEM")
     Stonks.windowUIbUTTON:RegisterEvent("BAG_UPDATE")
+
+	ESCMenu = ESCMenu or {}
+	ESCMenu.queue = ESCMenu.queue or {}
+	table.insert(ESCMenu.queue, {
+		name     = "Stonks",                        -- row label + dedupe key
+		callback = function() toggleUIbutton() end,  -- run on click; menu closes itself
+		category = "Vocation",                         -- optional: Characters / Combat /
+													-- Shop/Quality of Life / Vocation /
+													-- System/Addons (default). Prefixes ok.
+		icon     = "price",                      -- optional, from the list below
+	})
+
+	if settings.Get("showUIbutton") then
+		Stonks.windowUIbUTTON:Show(true)
+	else
+		Stonks.windowUIbUTTON:Show(false)
+	end
 end
 
 -- Addon cleanup

@@ -11,6 +11,7 @@ local defaultSettings = {
     OpenButtonX = 1499,
     OpenButtonY = 716,
     uiDrawScale = 1.25, -- Scale for UI elements
+    showUIbutton = true, -- Show the main UI button
 }
 
 local function DevLog(message)
