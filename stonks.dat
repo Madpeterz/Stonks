@@ -239,4 +239,19 @@
         "Typhoon Compass Design",
         400,
     },
+    {
+        35993,
+        "Seastorm Sea Monster Sonar Design",
+        37,
+    },
+    {
+        35973,
+        "Austeran Typhoon Rudder Design",
+        7,
+    },
+    {
+        35989,
+        "Typhoon Fish Finder Design",
+        49,
+    },
 }
