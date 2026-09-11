@@ -208,8 +208,6 @@ function scanner.SummariseBag()
         top3[i] = ranked[i]
     end
 
-    api.Log:Info("[Stonks] Total value: " .. tostring(totalValue)
-        .. " across " .. tostring(#matches) .. " item(s)")
     for i, entry in ipairs(top3) do
         api.Log:Info("[Stonks] Top " .. i .. ": " .. tostring(entry.itemname)
             .. " (valueper " .. tostring(entry.valueper) .. ", x" .. tostring(entry.count)
