@@ -23,6 +23,9 @@ local function isBuildingName(name)
     return false
 end
 
+-- Chat message filter IDs to post the top 3 items under, in rank order.
+local TOP3_CHAT_FILTERS = { 11, 5, 4 }
+
 local DATA_PATH = "Stonks/stonks.dat"
 local INVENTORY_BAG = 1 -- bagType 1 = Inventory
 local KEYWORD = "design" -- substring, matched case-insensitively, for discovery scans
@@ -63,6 +66,11 @@ local function itemIdFromInfo(info)
     return info.id or info.itemId or info.itemType or info.type
 end
 
+-- Pull the stack size out of a bag item info table.
+local function slotCountFromInfo(info)
+    return tonumber(info.stack) or 1
+end
+
 -- Reads stonks.dat from disk and rebuilds the in-memory dataset.
 function scanner.LoadDataset()
     local rows = api.File:Read(DATA_PATH)
@@ -82,7 +90,6 @@ function scanner.LoadDataset()
 
     dataset.rows = rows
     dataset.byId = byId
-    api.Log:Info("[Stonks] Loaded " .. tostring(#rows) .. " row(s) from " .. DATA_PATH)
     return dataset
 end
 
@@ -156,7 +163,7 @@ function scanner.FindMatchingItems()
             local itemId = itemIdFromInfo(info)
             local row = itemId ~= nil and data.byId[itemId] or nil
             if row ~= nil then
-                local slotCount = tonumber(info.count) or 1
+                local slotCount = slotCountFromInfo(info)
                 local entry = byId[itemId]
                 if entry == nil then
                     entry = {
@@ -209,9 +216,15 @@ function scanner.SummariseBag()
     end
 
     for i, entry in ipairs(top3) do
-        api.Log:Info("[Stonks] Top " .. i .. ": " .. tostring(entry.itemname)
-            .. " (valueper " .. tostring(entry.valueper) .. ", x" .. tostring(entry.count)
-            .. ", value " .. tostring(entry.value) .. ")")
+        local line1 = "[Stonks] Top " .. i .. ": " .. tostring(entry.itemname)
+        local line2 =  "     " .. tostring(entry.valueper) .. "g per item, in a stack of " .. tostring(entry.count)
+            .. ", total value " .. tostring(entry.value) .. " g"
+        
+        local filter = TOP3_CHAT_FILTERS[i]
+        if filter ~= nil then
+            api.Chat:DispatchChatMessage(filter, line1)
+            api.Chat:DispatchChatMessage(filter, line2)
+        end
     end
 
     return {
