@@ -8,7 +8,7 @@ local scanner = require("Stonks/scanner")
 local bagoverlay = {}
 
 -- Height of the coloured strip, in pixels, and its fill opacity (0..1).
-local BOX_HEIGHT = 4
+local BOX_HEIGHT = 12
 local BOX_ALPHA = 0.55
 
 -- Colour band -> {r, g, b}, 0..1 floats. Band is derived from valueper.
@@ -64,6 +64,14 @@ local function itemIdFromInfo(info)
     return info.id or info.itemId or info.itemType or info.type
 end
 
+local function slotCountFromInfo(info)
+    return tonumber(info.stack) or 1
+end
+
+local function tooltipText(box)
+    return tostring(box.valueper) .. "g per item\nTotal stack: " .. tostring(box.total) .. "g"
+end
+
 local function getBox(slotIndex, slotBtn)
     if boxes[slotIndex] ~= nil then
         return boxes[slotIndex]
@@ -73,6 +81,19 @@ local function getBox(slotIndex, slotBtn)
     box.bg = box:CreateColorDrawable(0, 0, 0, 0, "overlay")
     box.bg:AddAnchor("TOPLEFT", box, 0, 0)
     box.bg:AddAnchor("BOTTOMRIGHT", box, 0, 0)
+
+    function box:OnEnter()
+        local mouseX, mouseY = box:GetEffectiveOffset()
+        api.Interface:SetTooltipOnPos(tooltipText(box), box, mouseX + box:GetWidth(), mouseY)
+    end
+
+    function box:OnLeave()
+        api.Interface:SetTooltipOnPos("", box, 0, 0)
+    end
+
+    box:SetHandler("OnEnter", box.OnEnter)
+    box:SetHandler("OnLeave", box.OnLeave)
+
     boxes[slotIndex] = box
     return box
 end
@@ -111,6 +132,9 @@ function bagoverlay.Show()
         local row = itemId ~= nil and byId[itemId] or nil
         if row ~= nil then
             local box = getBox(slotIndex, slotBtn)
+            local valueper = tonumber(row.valueper) or 0
+            box.valueper = valueper
+            box.total = valueper * slotCountFromInfo(info)
             box:RemoveAllAnchors()
             box:AddAnchor("BOTTOM", slotBtn, 0, constants.overlay.heightOffset)
             box.bg:SetColor(colorForValue(row.valueper))
