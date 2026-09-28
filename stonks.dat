@@ -289,4 +289,19 @@
         "Eznan Typhoon Rudder Design",
         6,
     },
+    {
+        35942,
+        "High-Speed Siege Cannon Design",
+        6,
+    },
+    {
+        35954,
+        "Seabreeze Plank Design",
+        450,
+    },
+    {
+        35977,
+        "Caernord Typhoon Rudder Design",
+        130,
+    },
 }
